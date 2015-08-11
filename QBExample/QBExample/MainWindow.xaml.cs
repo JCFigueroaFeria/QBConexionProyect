@@ -1,4 +1,6 @@
-﻿using MahApps.Metro.Controls;
+﻿using Controller;
+using MahApps.Metro.Controls;
+using Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,29 @@ namespace QBExample
         public MainWindow()
         {
             InitializeComponent();
+            dpFechaInicio.SelectedDate = dpFechaTermino.SelectedDate = DateTime.Now;
+        }
+
+        private void btnCargarTabla_Click(object sender, RoutedEventArgs e)
+        {
+            cargarDatosDePagosFecha();
+        }
+
+
+
+        public void cargarDatosTablaPorReferencia() {
+            ControllerPayInvoice cargarInvoice = new ControllerPayInvoice();
+            Invoice rInvoice = cargarInvoice.cargarInvoice(this.txtRefNumber.Text);
+            List<Invoice> lista = new List<Invoice>();
+            lista.Add(rInvoice);
+            this.tblInvoice.ItemsSource = lista;
+        
+        }
+
+        private void cargarDatosDePagosFecha()
+        {
+            ControllerPayInvoice cargarInvoice = new ControllerPayInvoice();
+            this.tblInvoice.ItemsSource = cargarInvoice.cargarPagosInvoice((DateTime)dpFechaInicio.SelectedDate, (DateTime)dpFechaTermino.SelectedDate);
         }
     }
 }
