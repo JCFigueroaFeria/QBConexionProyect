@@ -17,12 +17,12 @@ namespace Controller
             daInvoice = new DAInvoice();
         }
 
-        public List<Invoice> cargarPagosInvoice(DateTime fechaInicio, DateTime fechaTermino)
+        public List<Invoice> cargarPagosInvoiceFecha(DateTime fechaInicio, DateTime fechaTermino)
         {
             return daInvoice.getListInvoiceDate(fechaInicio, fechaTermino);
         }
 
-        public Invoice cargarInvoice(string numReferent)
+        public Invoice cargarInvoiceNumReferent(string numReferent)
         {
             return daInvoice.getElement(numReferent);
         }

@@ -104,7 +104,16 @@ namespace DataAccess
             invoice.REFNUMBER = invoiceLineRet.RefNumber.GetValue();
             invoice.AMOUNT = invoiceLineRet.AppliedAmount.GetValue();
             invoice.MEMO = invoiceLineRet.Memo.GetValue();
+            invoice.PAID = invoiceLineRet.IsPaid.GetValue();
             return invoice;
+        }
+
+
+        private bool facturadoAzar()
+        {
+            Random rnd = new Random();
+            int number = rnd.Next(0, 100);
+            return ((number > 50) ? true : false);
         }
     }
 }
